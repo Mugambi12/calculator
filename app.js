@@ -9,47 +9,12 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // Routes
-app.get("/", (req, res) => {
-  res.render("calculator");
-});
+app.use("/", require("./routes/calculator"));
 
-app.get("/addition", (req, res) => {
-  const num1 = parseInt(req.query.num1);
-  const num2 = parseInt(req.query.num2);
-  const result = num1 + num2;
-  res.send({ result });
-});
-
-app.get("/subtraction", (req, res) => {
-  const num1 = parseInt(req.query.num1);
-  const num2 = parseInt(req.query.num2);
-  const result = num1 - num2;
-  res.send({ result });
-});
-
-app.get("/multiplication", (req, res) => {
-  const num1 = parseInt(req.query.num1);
-  const num2 = parseInt(req.query.num2);
-  const result = num1 * num2;
-  res.send({ result });
-});
-
-app.get("/division", (req, res) => {
-  const num1 = parseInt(req.query.num1);
-  const num2 = parseInt(req.query.num2);
-  if (num2 === 0) {
-    res.status(400).send({ error: "Cannot divide by zero" });
-  } else {
-    const result = num1 / num2;
-    res.send({ result });
-  }
-});
-
-app.get("/modulus", (req, res) => {
-  const num1 = parseInt(req.query.num1);
-  const num2 = parseInt(req.query.num2);
-  const result = num1 % num2;
-  res.send({ result });
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Internal Server Error");
 });
 
 // Start server
