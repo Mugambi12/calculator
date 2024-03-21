@@ -41,6 +41,17 @@
       </button>
       <div id="result"></div>
     </div>
+
+    <% if (typeof operation !== 'undefined') { %>
+    <div class="container mt-5">
+      <h1>Result</h1>
+      <p>Operation: <%= operation %></p>
+      <p>Number 1: <%= num1 %></p>
+      <p>Number 2: <%= num2 %></p>
+      <p>The result is: <%= result %></p>
+    </div>
+    <% } %>
+
     <script src="/js/script.js"></script>
   </body>
 </html>

@@ -1,3 +1,5 @@
+// Initiate the fetch request to the server
+
 function calculate(operation) {
   const num1 = document.getElementById("num1").value;
   const num2 = document.getElementById("num2").value;
